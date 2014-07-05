@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+<html>
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" href="/shibuya-web/jsp/stylesheets_jp/simple.css" type="text/css">
+<SCRIPT type="text/javascript"> 
+<!--
+	
+	var pre_basyo = "";
+   	var pre_shisetugrp = "";
+    var pre_jitsubasyocd = "";
+    
+    
+	function onClicks(index) {
+		
+		
+		var systemcd = document.basyoForm.g_systemcd;
+		var mkkbn = document.basyoForm.g_mkkbn;
+		
+		var basyocd = document.basyoForm.g_basyocd;
+		var jitubasyocd = document.basyoForm.g_jitubasyocd;
+		var shisetugrp = document.basyoForm.shisetugroup;
+		
+		
+
+		var sentakuFlg = false;
+	    var basyoList = document.basyoForm.g_basyocd;
+    	
+    	for(i=0; i<basyoList.length; i++){
+            	if(basyoList.options[i].selected){
+					sentakuFlg = true;
+					break;
+            	}        
+    	}
+	
+
+		if (pre_basyo != "" && pre_shisetugrp != "" && pre_jitsubasyocd != "") {				
+			if(sentakuFlg)
+			{
+				document.basyoForm.submit();
+				return;
+			}
+			else 
+			{
+			 	if(pre_basyo != basyocd.options[index].value 
+			       && pre_shisetugrp != shisetugrp.options[index].value 
+			       && pre_jitsubasyocd != jitubasyocd.options[index].value)
+				{
+					return;
+				}
+			}
+		}
+  		
+	    
+	    
+		
+		
+		systemcd.options[index].selected = true;
+		mkkbn.options[index].selected = true;
+		
+		shisetugrp.options[index].selected = true;
+		basyocd.options[index].selected = true;
+		jitubasyocd.options[index].selected = true;
+		
+		
+		pre_basyo = basyocd.options[index].value;
+    	pre_shisetugrp = shisetugrp.options[index].value;
+    	pre_jitsubasyocd = jitubasyocd.options[index].value;
+	    
+	    
+		document.basyoForm.submit();
+	}
+
+//-->
+</SCRIPT>
+<title>施設選択</title>
+</head>
+<body>
+<div id="wrapper">
+
+<div id="header">
+<h1>施設選択</h1>
+	<p class="right"><br />
+
+		<strong>ようこそゲストさん</strong>
+
+	</p>
+</div><!-- header -->
+
+<p id="path">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">システムトップページ</A>
+ &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_group_sel_1?u_genzai_idx=0&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>分類選択１（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_dest_sel?u_genzai_idx=1&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>目的選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp06"><B>施設選択（予約）</B></FONT></p>
+
+<form name="basyoForm" method="post" action="/shibuya-web/reserve/gin_z_room_sel">
+	<INPUT type="hidden" name="g_sessionid" value="4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">
+	<input type="hidden" name="u_genzai_idx" value="3" />
+	<INPUT type="hidden" name="g_kinonaiyo" value="8">
+<div id="contents">
+<div id="inner-contents">
+
+<p class="lead">利用される施設を選択してください。</p>
+
+
+ 
+
+	<table class="with-links" id="1">
+		<thead>
+			<tr ><th class="first">施設名</th>
+
+
+
+				<th colspan="7">&nbsp;</th><th class="last">&nbsp;</th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+		
+	
+			
+			
+			<tr height="45">
+			
+				<td class="left">
+
+
+
+					
+					<a class="button" id="id0" href="javascript:onClicks('0')" alt="null" title="文化総合センター大和田" >
+
+
+
+	
+						
+
+
+
+
+
+
+
+
+
+
+						文化総合センター大和田
+	
+					</a>
+				</td>
+				
+				
+			
+	
+			
+				<td class="icon">
+
+
+				</td>
+				<td class="icon">
+
+
+				</td>
+				<td class="icon">
+
+
+				</td>
+				<td class="icon">
+
+
+				</td>
+				<td class="icon">
+
+
+				</td>
+				<td class="icon">
+
+
+				</td>
+				<td class="icon">
+
+
+				</td>
+				<td class="right" width="150">
+			
+
+			    <img src="/shibuya-web/jsp/images_jp/common/btn-blank.gif" />
+			
+			
+			
+			</td>
+				
+			<td class="right"><a href="#"></a>
+				
+			</tr>
+
+
+		</tbody>
+	</table>
+
+<SELECT multiple size="1" name="g_basyocd" style="display:none">
+	
+		<OPTION value="1">1</OPTION>
+	
+</SELECT>
+<SELECT multiple size="1" name="g_jitubasyocd" style="display:none">
+	
+		<OPTION value="1">1</OPTION>
+	
+</SELECT>
+<SELECT multiple size="1" name="shisetugroup" style="display:none">
+	
+		<OPTION value="1">1</OPTION>
+	
+</SELECT>  
+        
+ 
+
+			
+
+			
+	
+		
+
+			
+
+			
+
+		
+<SELECT multiple size="1" name="g_systemcd" style="display:none">
+	
+		<OPTION value="1"></OPTION>
+	
+</SELECT> 
+<SELECT multiple size="1" name="g_mkkbn" style="display:none">
+	
+		<OPTION value="2"></OPTION>
+	
+</SELECT> 
+
+
+</div><!-- inner-contents -->
+</div><!-- contents -->
+
+</form>
+<ul id="footer">
+		
+	
+		<li id="btn-back">		<A href="/shibuya-web/reserve/gin_z_dest_sel?u_genzai_idx=1&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum&g_kinonaiyo=8" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-back.gif" alt="前へ戻る" title="前へ戻る" ></A>
+</li>
+		
+
+
+	<li id="btn-user">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-top.gif" alt="トップページへ" title="トップページへ" ></A>
+</li>
+
+
+</ul>
+
+<p id="copyright">&nbsp;</p>
+
+</div><!-- wrapper -->
+</body>
+</html>
+
+

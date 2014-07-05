@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>表示選択</title>
+<link rel="stylesheet" href="/shibuya-web/jsp/stylesheets_jp/simple.css" type="text/css">
+<script language="javascript">
+<!--	
+	var selYear ;   
+	var selMonth;   
+	var selDay  ;
+	
+	var min_year  = 2014;
+	var min_month = 07;
+	var min_day   = 06;
+	var max_year  = 2014;
+	var max_month = 09;
+	var max_day   = 30;
+	
+	
+	var isJP = 1;
+	
+	function initDate() {
+		selYear  = window.document.getElementById("YYYY");   
+		selMonth = window.document.getElementById("MM");   
+		selDay   = window.document.getElementById("DD");
+		//Init year
+		for(var i=min_year - 1988;i < max_year -1988 + 1;i ++ ) {
+			var op   = document.createElement("OPTION");  
+			op.value = i + 1988;     
+			if(isJP == 1) {
+				op.innerHTML = "平成" + i + "年" ;
+			} else {
+				op.innerHTML = (i + 1988) + "";
+			}
+			if(op.value == min_year) {
+				op.selected = true;
+			}
+			selYear.appendChild(op);
+		}
+		//Init other dates
+		changeYear();
+
+	}
+	function changeYear() {
+		year  = selYear.value;
+		if(max_year == min_year) {
+			writeMonth(min_month,max_month);
+		} else {
+			if(year == min_year) {
+				writeMonth(min_month,12);
+			} else if(year == max_year) {
+				writeMonth(1,max_month);
+			} else {
+				writeMonth(1,12);
+			}
+		}
+		changeDay();
+	}
+	function changeDay() {
+		year  = selYear.value;
+		month = selMonth.value;
+		//ChangeDay
+		var maxDate  = (new Date(year,month,0)).getDate();
+		if(min_year == max_year && min_month == max_month) {
+			writeDay(min_day,max_day);
+		} else {
+			if(year == min_year && month == min_month) {
+				writeDay(min_day,maxDate);
+				
+			} else if(year == max_year && month == max_month) {
+				writeDay(1,max_day);
+				
+			} else {
+				writeDay(1,maxDate);
+			}
+		}
+	}
+	
+	function writeMonth(min,max) {
+		selMonth.length = 0;
+		for(var i=min ;i < max + 1;i ++ ) {
+			var op   = document.createElement("OPTION");  
+			op.value = i;     
+			if(isJP == 1) {
+				op.innerHTML = i + "月";
+			} else {
+				op.innerHTML = i;
+			}
+			if(op.value == min_month) {
+				op.selected = true;
+			}
+			selMonth.appendChild(op);   
+		}
+	}
+	
+	function writeDay(min,max) {
+		selDay.length = 0;
+		for(var i=min ;i < max + 1;i ++ ) {
+			var op   = document.createElement("OPTION");  
+			op.value = i;     
+			if(isJP == 1) {
+				op.innerHTML = i + "日";
+			} else {
+				op.innerHTML = i;
+			}
+			if(op.value == min_day) {
+				op.selected = true;
+			}
+			selDay.appendChild(op);   
+		}
+	}
+	
+
+	//確定ボタン押下処理
+
+
+	function checkedOkButton() {
+
+
+		DT = document.form_nm.YYYY.value;
+		if (document.form_nm.MM.value < 10) {
+			DT = DT +"0"+document.form_nm.MM.value;
+		} else {
+			DT = DT + document.form_nm.MM.value;
+		}
+		if (document.form_nm.DD.value < 10) {
+			DT = DT + "0" +document.form_nm.DD.value;
+		} else {
+			DT = DT + document.form_nm.DD.value;
+		}
+
+
+		document.Ok.ymd.value = DT;
+		document.Ok.action = "/shibuya-web/reserve/gin_z_datetime_sel_1";
+		document.Ok.submit();
+	}
+	
+	function clickYobi(index) {
+		var tmpCt = 0;
+		var youbi = document.Ok.u_yobi;
+		var ckbox = document.Ok.chkbox;
+
+		//Set youbi value
+		if(youbi[index].value == "") {
+			if(index == 7) {
+				youbi[index].value = "10";
+				
+				ckbox[index].checked = true;
+				
+			} else {
+				youbi[index].value = "" + index;
+				
+				ckbox[index].checked = true;
+				
+			}
+		} else {
+			youbi[index].value = "";
+		}
+	}
+
+	function initYoubi() {
+
+	}
+
+-->
+</script>
+</head>
+
+
+<body onload="javascript:initDate();initYoubi();">
+
+<div id="wrapper">
+
+<div id="header">
+<h1>表示選択</h1>
+<p class="right">
+
+
+		<strong>ようこそゲストさん</strong>
+
+</p>
+</div><!-- header -->
+
+<p id="path">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">システムトップページ</A>
+ &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_group_sel_1?u_genzai_idx=0&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>分類選択１（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_dest_sel?u_genzai_idx=1&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>目的選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_amenity_sel?u_genzai_idx=2&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>施設選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_room_sel?u_genzai_idx=3&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>部屋選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp06"><B>表示選択（予約）</B></FONT></p>
+
+
+<div id="contents">
+
+<p class="lead">利用開始日および曜日を選択し確定ボタンを押してください。</p>
+<FORM name="form_nm" method="post">
+	<INPUT type="hidden" name="g_sessionid" value="4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">
+
+<dl id="filter-by-month">
+
+
+<dt><img src="/shibuya-web/jsp/images_jp/common/start-day.gif" alt="開始日選択" title="開始日選択" /></dt>
+
+<dd>
+
+
+
+<select id="YYYY" onchange="changeYear()" style= "width:110px">
+
+
+</select>
+<select id="MM" onchange="changeDay()" style= "width:70px">
+</select>
+<select id="DD" style= "width:70px">
+</select>
+</dd>
+</dl>
+</FORM>
+
+<FORM name="Ok" method="post">
+	<INPUT type="hidden" name="g_sessionid" value="4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">
+<dl class="calendar">
+
+
+<dt><img src="/shibuya-web/jsp/images_jp/common/filter-by-day.gif" alt="曜日選択" title="曜日選択" /></dt>
+
+<dd class="select">
+<input type="checkbox"  name="chkbox"  onClick="clickYobi(0)">日</a>
+<input type="hidden"    name="u_yobi"  value="" />
+<input type="checkbox"  name="chkbox"  onClick="clickYobi(1)">月</a>
+<input type="hidden"    name="u_yobi"  value="" />
+<input type="checkbox"  name="chkbox"  onClick="clickYobi(2)">火</a>
+<input type="hidden"    name="u_yobi"  value="" />
+<input type="checkbox"  name="chkbox"  onClick="clickYobi(3)">水</a>
+<input type="hidden"    name="u_yobi"  value="" />
+<input type="checkbox"  name="chkbox"  onClick="clickYobi(4)">木</a>
+<input type="hidden"    name="u_yobi"  value="" />
+<input type="checkbox"  name="chkbox"  onClick="clickYobi(5)">金</a>
+<input type="hidden"    name="u_yobi"  value="" />
+<input type="checkbox"  name="chkbox"  onClick="clickYobi(6)">土</a>
+<input type="hidden"    name="u_yobi"  value="" />
+<input type="checkbox"  name="chkbox"  onClick="clickYobi(7)">祝日</a>
+<input type="hidden"    name="u_yobi"  value="" />
+</dd>
+</dl>
+
+<input type="hidden" name="ymd" value="">
+<INPUT type="hidden" name="u_genzai_idx" value="5" >
+<INPUT type="hidden" name="g_kinonaiyo" value="8">
+</FORM>
+
+<div id="buttons-navigation" class="center">
+
+
+
+
+
+
+    <INPUT type="image" id="btnOK" src="/shibuya-web/jsp/images_jp/common/btn-ok.gif" style="cursor:hand" title="確定" alt="確定" onClick="checkedOkButton()">
+
+
+	
+</div><!-- buttons-navigation -->
+
+</div><!-- contents -->
+
+<ul id="footer">
+		
+	
+		<li id="btn-back">		<A href="/shibuya-web/reserve/gin_z_room_sel?u_genzai_idx=3&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum&g_kinonaiyo=8" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-back.gif" alt="前へ戻る" title="前へ戻る" ></A>
+</li>
+		
+
+
+		<li id="btn-user">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-top.gif" alt="トップページへ" title="トップページへ" ></A>
+</li>
+
+	
+</ul>
+
+<p id="copyright">&nbsp</p>
+
+</div><!-- wrapper -->
+</body>
+</html>
+

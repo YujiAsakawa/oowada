@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>予約分類選択１</title>
+<link rel="stylesheet" href="/shibuya-web/jsp/stylesheets_jp/simple.css" type="text/css">
+<script language="javascript">
+    <!--
+
+    function buttonClick(num,value,urlFlg) {
+
+	    var bunriList = document.selectBunriForm.g_bunruicd;
+		var bunriList1 = document.selectBunriForm.bunruicd;
+	    for(i=0; i<bunriList.length; i++)
+	    {
+	        if(bunriList.options[i].value == value) {
+		            if(bunriList.options[i].selected) {
+	           		bunriList.options[i].selected = false;
+	            } else {
+	                bunriList.options[i].selected = true;
+	            }
+	            break;
+	        }	
+	     }
+		for(i=0; i<bunriList1.length; i++)
+	    {
+	        if(bunriList1.options[i].value == value) {
+	
+	            if(bunriList1.options[i].selected) {
+	           		bunriList1.options[i].selected = false;
+	            } else {
+	                bunriList1.options[i].selected = true;
+	            }
+	            break;
+	        }	
+	     }
+	    if(urlFlg != "1")
+	    {
+	        //分類選択子画面に遷移する。
+	        document.selectBunriForm.action ="/shibuya-web/reserve/gin_z_group_sel_2";
+	        document.selectBunriForm.target = "_self";
+	    }
+
+	    document.selectBunriForm.submit();
+	    
+	    
+	    for(i=0; i<bunriList.length; i++)
+	    {
+	        if(bunriList.options[i].value == value) {
+		        if(bunriList.options[i].selected) {
+	           		bunriList.options[i].selected = false;
+	            } else {
+	                bunriList.options[i].selected = false;
+	            }
+	            break;
+	        }	
+	     }
+		for(i=0; i<bunriList1.length; i++)
+	    {
+	        if(bunriList1.options[i].value == value) {
+	
+	            if(bunriList1.options[i].selected) {
+	           		bunriList1.options[i].selected = false;
+	            } else {
+	                bunriList1.options[i].selected = false;
+	            }
+	            break;
+	        }	
+	     }
+	     
+
+	}
+
+	-->
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id="header">
+<h1>予約分類選択１</h1>
+&nbsp
+<p class="right">
+
+		<strong>ようこそゲストさん</strong>
+
+</p>
+</div><!-- header -->
+
+<p id="path">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">システムトップページ</A>
+ &gt;&gt; <FONT class="fopp06"><B>分類選択１（予約）</B></FONT></p>
+
+<div id="contents">
+<div id="inner-contents">
+<p class="lead">利用される施設分類を選択してください。</p>
+<ul class="double-text-buttons">
+
+<div>
+
+	
+
+
+<li><a id="button0" class ="" href="javascript:buttonClick('0','1000','1')" title="文化総合センタ大和田">文化総合センタ大和田</a></li>
+
+
+<div>
+
+	
+
+
+<li><a id="button1" class ="" href="javascript:buttonClick('1','9000','1')" title="利用目的から">利用目的から</a></li>
+
+
+</div>
+</ul>
+</div><!-- inner-contents -->
+</div><!-- contents -->
+<ul id="footer">
+
+	
+	
+	
+	
+	
+		
+	
+		<li id="btn-back"><a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum"><img src="/shibuya-web/jsp/images_jp/common/btn-back.gif" title="前へ戻る"/></a></li>
+		
+	
+
+    
+
+	<li id="btn-user">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-top.gif" alt="トップページへ" title="トップページへ" ></A>
+</li>
+		
+
+</ul>
+
+<p id="copyright">&nbsp;</p>
+		
+</div><!-- wrapper -->
+<FORM name="selectBunriForm" action="/shibuya-web/reserve/gin_z_dest_sel" target="_parent" method="post">
+	<INPUT type="hidden" name="g_sessionid" value="4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">
+    <INPUT type="hidden" name="checkedAll" value="false" >
+    <SELECT multiple size="2" name="g_bunruicd" style="visibility:hidden;height:0px">
+    
+      <OPTION value="1000">1</OPTION>
+    
+      <OPTION value="9000">1</OPTION>
+    
+
+    </SELECT>
+    <SELECT multiple size="2" name="bunruicd" style="visibility:hidden;height:0px">
+    
+      <OPTION value="1000">1</OPTION>
+    
+      <OPTION value="9000">1</OPTION>
+    
+    </SELECT>
+    <INPUT type="hidden" name="u_genzai_idx" value="1" >
+    <INPUT type="hidden" name="g_kinonaiyo" value="8">
+    <INPUT type="hidden" name="pageflg" value="1" >
+</FORM>
+</body>
+</html>
+

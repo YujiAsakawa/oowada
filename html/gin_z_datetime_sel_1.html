@@ -1,0 +1,1246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>日付別予約状況-開始</title>
+<link rel="stylesheet" href="/shibuya-web/jsp/stylesheets_jp/simple.css" type="text/css">
+<script language="javascript">
+
+
+	
+	//選択されたコマの数量
+
+	var selKomaNum = 0;
+	
+	//表示されているIDの初期値
+	var disp_id = 1;
+	
+	
+	
+	var tb_disp_id_min = 1;
+	var tb_disp_id_max = 7;
+	function initButton() {
+
+		var int_td = 3;
+
+
+		
+		for(i=0 ; i < int_td -1 ; i++){
+			var min_td_obj = document.getElementById("td" + disp_id + i + "_" + tb_disp_id_min);
+			var max_td_obj = document.getElementById("td" + disp_id + i + "_" + tb_disp_id_max);
+			if(min_td_obj != null && max_td_obj != null){
+				continue;
+			}else{
+				
+				tb_disp_id_min = 1;
+				tb_disp_id_max = 7;
+				break;
+			}
+		}
+
+
+		var tagid_prefix = "td" + disp_id;
+		var obj_array = new Array(2);
+		obj_array[0] = document.getElementsByTagName("th");
+		obj_array[1] = document.getElementsByTagName("td");
+		for(i = 0 ; i < obj_array.length; i++){
+			for(j = 0; j < obj_array[i].length; j++){
+				var objtmp = obj_array[i][j];
+				var objidtmp = objtmp.id;
+				if (objidtmp.indexOf(tagid_prefix) == 0){
+					var colno = objidtmp.substring(objidtmp.indexOf("_") + 1);
+					if( tb_disp_id_min <= colno && colno <=tb_disp_id_max) {
+						objtmp.style.display="";
+					} else {
+						objtmp.style.display="none";
+					}
+				}
+			}
+		}
+
+	}
+	
+	var renzokuflag = false;
+
+	function okbutton() {
+
+		var flag = false;
+		
+		var flag1 = false;
+	
+		for (i=0;i<=1;i++) {
+
+			if (flag) {
+			
+			    
+				document.form_nm.flg_sstkoma.value = "1";
+			    
+				break;
+			}
+			
+			 
+			
+			
+			
+			
+			
+			
+				
+				
+			
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			if (document.form_nm.kaisikoma.options[i] != null
+				&&document.form_nm.kaisikoma.options[i].value != 0) {
+				document.form_nm.kaisikoma.options[i].selected = true;
+				document.form_nm.g_kaisitime.options[i].selected = true;
+				document.form_nm.kanricd.options[i].selected = true;
+				document.form_nm.g_sisetucd.options[i].selected = true;
+				document.form_nm.cssisetucd.options[i].selected = true;
+				
+				
+				
+				
+				
+				document.form_nm.basyocd.options[i].selected = true;
+				document.form_nm.g_stgroup.options[i].selected = true;
+				
+				
+				document.form_nm.ymd.options[i].selected = true;
+				if (document.form_nm.g_renzkkoma.options[i].value == 1) {
+					renzokuflag = true;
+				} else {
+					renzokuflag = false;
+				}
+				flag1 = true;
+			}
+			if (document.form_nm.syurkoma.options[i] != null 
+				&& document.form_nm.syurkoma.options[i].value != 0) {
+				document.form_nm.syurkoma.options[i].selected = true;
+				document.form_nm.g_syurtime.options[i].selected = true;
+			}
+			
+			var index_i;
+			var index_j;
+			for (j=0;j<28;j++) {
+				var hiddenId = "record" + i + j;
+				var check_elm = document.getElementById(hiddenId);
+				
+				
+				
+				
+				
+				
+				
+				if (check_elm != null && check_elm.value == document.form_nm.kaisikoma.options[i].value) {
+					index_i = j;
+				}
+				if (check_elm != null && check_elm.value == document.form_nm.syurkoma.options[i].value) {
+					index_j = j;
+				}
+				
+			}
+			for (;index_i<index_j;index_i++) {
+				var check_id = "record" + i + index_i;
+				var check_elem = document.getElementById(check_id);
+				if (check_elem.value == 0 || check_elem.value == null ) {
+					flag = true;
+					break;
+				}
+			}
+		}
+
+        if (flag1) {
+        
+        	
+        	
+        	
+       		
+            
+            if (renzokuflag) {
+        		document.form_nm.action="/shibuya-web/reserve/"+"gin_z_datetime_sel_2";
+        	} else {
+       			document.form_nm.action="/shibuya-web/reserve/"+"gin_z_count_input";
+            }
+            
+            
+        	document.form_nm.showStartKoma.value = tb_disp_id_min;
+			document.form_nm.showEndKoma.value = tb_disp_id_max;
+        	
+        	
+            
+            document.form_nm.submit();
+            
+        }
+	}
+	
+	function okbuttonTk() {
+	
+		
+		document.form_nm.submit();
+		
+	}
+	
+	function onclickbutton(count,num) {
+		
+		
+		if (selKomaNum != 0) {
+			return ;
+		}
+		selKomaNum = 1;
+		
+	
+	
+		var button = document.getElementById("button" + count + "_" + num);
+	
+		
+		checkkoma(count,num);
+
+		if (button.alt == "O") {
+			
+			button.src = "/shibuya-web/jsp/images_jp/common/icon_timetable_selected.gif";
+			button.alt = "選択";
+			
+
+			button.title = "選択";
+
+		} else {
+
+			button.src = "/shibuya-web/jsp/images_jp/common/icon_timetable_O.gif";
+			button.alt = "O";
+
+			button.title = "O";
+
+		}
+		okbutton();
+	}
+	
+	function checkkoma(index,num) {
+	
+	
+		var hiddenId = "record" + index + "_" + num;
+	
+		
+		var elementId = document.getElementById(hiddenId);
+		if (elementId.value == 0) {
+			elementId.value = num;
+		} else {
+			elementId.value = 0;
+		}
+				
+		var min_koma = 28;
+		var max_koma = 0;
+		var kaisitime;
+		var syrrtime;
+		for (i=1;i<=28;i++) {
+			var j = i + 1;
+		
+		
+		
+		
+			var i_id = "record" + index + "_" + i;
+			var kaisitimeid = "kaisitime" + index + "_" + i;
+			var syurtimeid = "syuryotime" + index + "_" + i;
+		
+			
+			var i_elem = document.getElementById(i_id);
+			var kaisi_elem = document.getElementById(kaisitimeid);
+			var syur_elem = document.getElementById(syurtimeid);
+
+			if (i_elem != null && i_elem.value != 0 && i_elem.value < min_koma) {
+				min_koma = i_elem.value;
+				kaisitime = kaisi_elem.value;
+			}
+			if (i_elem != null && i_elem.value != 0 && i_elem.value > max_koma) {
+				max_koma = i_elem.value;
+				syrrtime = syur_elem.value;
+			}
+		}
+
+		
+		
+			
+		
+		
+		
+		
+			 
+		
+		
+		
+		
+		if (min_koma != 28 && max_koma != 0) {
+			document.form_nm.g_kaisitime.options[index].value = kaisitime;
+			document.form_nm.g_syurtime.options[index].value = syrrtime;	
+			document.form_nm.kaisikoma.options[index].value = min_koma;
+			document.form_nm.syurkoma.options[index].value = max_koma;
+		} else {
+		    document.form_nm.g_kaisitime.options[index].value = "";
+			document.form_nm.g_syurtime.options[index].value = "";	
+			document.form_nm.kaisikoma.options[index].value = "";
+			document.form_nm.syurkoma.options[index].value = "";
+			renzokuflag = true;
+		}
+		
+	}
+	
+	function leftbutton() {
+		//次のID
+		var next_id = tb_disp_id_max - 7;
+		var int_td = 3;
+		for (i=0;i<=int_td;i++) {
+			//現在のIDのオブジェクトを取得
+
+			var td_obj = document.getElementById("td" + disp_id + i + "_" + tb_disp_id_max);
+			if (td_obj == null) {
+			} else {
+				//現在のIDを非表示にする
+				td_obj.style.display="none";
+			}
+		}
+		for (i=0;i<=int_td;i++) {
+
+			//次のIDのオブジェクトを取得
+
+
+
+			var next_td_obj = document.getElementById("td" + disp_id + i + "_" + next_id);
+			if (next_td_obj == null) {
+			} else {
+				//次のIDを表示する
+				next_td_obj.style.display="";
+			}
+		}
+		
+		//表示IDの更新
+		tb_disp_id_min = tb_disp_id_min - 1;
+		tb_disp_id_max = tb_disp_id_max - 1;
+		
+		//ボタンの表示チェック
+		butonCheck();
+	}
+	
+	function rightbutton() {
+		//次のID
+		var next_id = tb_disp_id_min + 7;
+		var int_td = 3;
+		for (i=0;i<=int_td;i++) {
+			//次のIDのオブジェクトを取得
+
+			var next_td_obj = document.getElementById("td" + disp_id + i + "_" + next_id);
+			if (next_td_obj == null) {
+			} else {
+				//次のIDを表示する
+				next_td_obj.style.display="";
+			}
+
+		}
+		for (i=0;i<=int_td;i++) {
+			//現在のIDのオブジェクトを取得
+
+			var td_obj = document.getElementById("td" + disp_id + i + "_" + tb_disp_id_min);
+			if (td_obj == null) {
+			} else {
+				//現在のIDを非表示にする
+				td_obj.style.display="none";
+			}
+		}
+		//表示IDの更新
+		tb_disp_id_min = tb_disp_id_min + 1;
+		tb_disp_id_max = tb_disp_id_max + 1;
+		
+		//ボタンの表示チェック
+		butonCheck();
+	}
+	//次へボタン押下処理
+
+
+
+	function downbutton() {
+
+		//次のID
+		var next_id = disp_id + 1;
+				
+		//現在のIDのオブジェクトを取得
+
+		var obj = document.getElementById(disp_id);
+
+		//次のIDのオブジェクトを取得
+
+		var next_obj = document.getElementById(next_id);
+		
+		//現在のIDを非表示にする
+		obj.style.display="none";
+		//次のIDを表示する
+		next_obj.style.display="";
+		
+		var int_td = 5;
+		if (next_id == 1) {
+			int_td = 3;
+		}
+		for (i=0;i<=int_td;i++) {
+			for (j=tb_disp_id_min;j<=tb_disp_id_max;j++) {
+				//次のIDのオブジェクトを取得
+
+				var next_td_obj = document.getElementById("td" + next_id + i + "_" + j);
+				if (next_td_obj == null) {
+				} else {
+					//次のIDを表示する
+					next_td_obj.style.display="";
+				}
+			}
+
+		}
+		for (i=0;i<=5;i++) {
+			for (j=tb_disp_id_min;j<=tb_disp_id_max;j++) {
+				//現在のIDのオブジェクトを取得
+
+				var td_obj = document.getElementById("td" + disp_id + i + "_" + j);
+
+				if (td_obj == null) {
+				} else {
+					//現在のIDを非表示にする
+					td_obj.style.display="none";
+				}
+			}
+		}
+
+		//表示IDの更新
+		disp_id = next_id;
+		
+		//ボタンの表示チェック
+		butonCheck();
+		
+	}
+
+	//前へボタン押下処理
+
+	function upbutton() { 
+		//前のID
+		var prev_id = disp_id - 1;
+
+		//現在のIDのオブジェクトを取得
+
+		var obj = document.getElementById(disp_id);
+
+		//次のIDのオブジェクトを取得
+
+		var prev_obj = document.getElementById(prev_id);
+		
+		//現在のIDを非表示にする
+		obj.style.display="none";
+		//次のIDを表示する
+		prev_obj.style.display="";
+
+		var int_td = 5;
+		if (disp_id == 1) {
+			int_td = 3;
+		}
+		for (i=0;i<=5;i++) {
+			for (j=tb_disp_id_min;j<=tb_disp_id_max;j++) {
+				//次のIDのオブジェクトを取得
+
+				var next_td_obj = document.getElementById("td" + prev_id + i + "_" + j);
+				if (next_td_obj == null) {
+				} else {
+					//次のIDを表示する
+					next_td_obj.style.display="";
+				}
+			}
+
+		}
+		for (i=0;i<=int_td;i++) {
+			for (j=tb_disp_id_min;j<=tb_disp_id_max;j++) {
+				//現在のIDのオブジェクトを取得
+
+				var td_obj = document.getElementById("td" + disp_id + i + "_" + j);
+				if (td_obj == null) {
+				} else {
+					//現在のIDを非表示にする
+					td_obj.style.display="none";
+				}
+			}
+		}
+		
+		//表示IDの更新
+		disp_id = prev_id;
+		
+		//ボタンの表示チェック
+		butonCheck();
+		
+	}
+
+	function butonCheck() {
+		
+		initButton();
+		
+		var left_obj = document.getElementById("leftbutton");
+		if(tb_disp_id_min <= 1) {
+			left_obj.style.display="none";
+		} else {
+			if(left_obj.style.display == "none"){
+				left_obj.style.display="";
+			}
+		}
+		var right_obj = document.getElementById("rightbutton");
+		if(tb_disp_id_max >= 3) {
+			right_obj.style.display="none";
+		} else {
+			if(right_obj.style.display == "none"){
+				right_obj.style.display="";
+			}
+		}
+	}
+	
+	
+	function changeDspDay(url, idx, flg, dspDay){
+		document.chgDspDateFrm.action = url;
+		document.chgDspDateFrm.u_genzai_idx.value = idx;
+		
+		
+		document.chgDspDateFrm.hiduke_sousa_flg.value = flg;
+		
+		document.chgDspDateFrm.u_hyojibi.value = dspDay;
+		
+		document.chgDspDateFrm.showStartKoma.value = tb_disp_id_min;
+		document.chgDspDateFrm.showEndKoma.value = tb_disp_id_max;
+		
+
+		if(document.form_nm.yoyakuinfo){
+			document.chgDspDateFrm.yoyakuinfo.value = document.form_nm.yoyakuinfo.value;
+		}
+		document.chgDspDateFrm.submit();
+		return true;
+	}
+	
+	function okbutton1() {
+		document.form_nm.showStartKoma.value = tb_disp_id_min;
+		document.form_nm.showEndKoma.value = tb_disp_id_max;
+		document.form_nm.action="/shibuya-web/reserve/"+"gin_z_amenitytime_sel_1";
+		document.form_nm.submit();
+	}
+	
+
+</script>
+</head>
+<body onload="javascript:butonCheck();">
+<div id="wrapper">
+
+<div id="header">
+    	<h1>日付別予約状況-開始</h1>
+   	 <p class="right"><br />
+
+		<strong>ようこそゲストさん</strong>
+
+   	 	</p>
+</div><!-- header -->
+
+<p id="path">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">システムトップページ</A>
+ &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_group_sel_1?u_genzai_idx=0&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>分類選択１（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_dest_sel?u_genzai_idx=1&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>目的選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_amenity_sel?u_genzai_idx=2&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>施設選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_room_sel?u_genzai_idx=3&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>部屋選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_dsp_sel?u_genzai_idx=4&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>表示選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp06"><B>日付別時間選択１（予約）</B></FONT></p>
+
+<div id="contents">
+<div id="inner-contents">
+
+<p class="lead">
+利用される開始時間（区分）。
+
+</p>
+<div id="timetable">
+
+<ul class="top-nav">
+
+
+
+
+
+
+
+<li><A STYLE="visibility:hidden"><IMG src="/shibuya-web/jsp/images_jp/common/btn-month-back-grey-s.gif" alt="前月" title="前月" /></a></li><li><A STYLE="visibility:hidden"><IMG src="/shibuya-web/jsp/images_jp/common/btn-week-back-grey-s.gif" alt="前週" title="前週" /></a></li><li><A STYLE="visibility:hidden"><IMG src="/shibuya-web/jsp/images_jp/common/btn-day-back-grey-s.gif" alt="前へ" title="前へ" /></A></li><li class="day" id="li">平成26年07月06日(日)</li><li><A href="javaScript:changeDspDay('/shibuya-web/reserve/gin_z_datetime_sel_1', 5, 1, 20140707);"><IMG src="/shibuya-web/jsp/images_jp/common/btn-day-next-grey-s.gif" alt="次へ" title="次へ" /></a></li><li><A href="javaScript:changeDspDay('/shibuya-web/reserve/gin_z_datetime_sel_1', 5, 6, 20140713);"><IMG src="/shibuya-web/jsp/images_jp/common/btn-week-next-grey-s.gif" alt="翌週" title="翌週" /></a></li><li class="last"><A href="javaScript:changeDspDay('/shibuya-web/reserve/gin_z_datetime_sel_1', 5, 4, 20140806);"><IMG src="/shibuya-web/jsp/images_jp/common/btn-month-next-grey-s.gif" alt="次月" title="次月" /></A></li>
+
+
+
+
+
+</ul>
+<div class="wrapper">
+
+
+
+	<table id="1" STYLE="display:""">
+
+
+
+	
+
+
+
+
+
+						<thead>
+							<TR>
+								<th class="empty">&nbsp;</th>
+	
+					<th  id="td10_1" STYLE="display:""">
+							09:00<br />
+							<span>～</span><br />
+							12:00
+					</th>
+	
+
+
+
+
+
+
+					<th  id="td10_2" STYLE="display:""">
+							13:00<br />
+							<span>～</span><br />
+							17:00
+					</th>
+	
+
+
+
+
+
+
+					<th  id="td10_3" STYLE="display:""">
+							18:00<br />
+							<span>～</span><br />
+							22:00
+					</th>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<th id="td10_4" STYLE="display:""" >&nbsp;</th>
+
+					<th id="td10_5" STYLE="display:""" >&nbsp;</th>
+
+					<th id="td10_6" STYLE="display:""" >&nbsp;</th>
+
+					<th id="td10_7" STYLE="display:""" >&nbsp;</th>
+
+					</TR>
+				</thead>
+
+
+	
+	
+
+
+<INPUT type="hidden" id="record0_1" value="0">
+
+
+	
+	
+
+
+<INPUT type="hidden" id="record0_2" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_2" value="09:00">
+	<INPUT type="hidden" id="syuryotime0_2" value="12:00">
+
+	
+					<tbody>
+						<tr><th><strong>文化総合センター大和田</strong><p>学習室４（定員１２名）</th>
+	
+					
+					  
+	
+						  
+						  <td id="td11_1" STYLE="display:"""><img src="/shibuya-web/jsp/images_jp/common/icon_timetable_X.gif" alt="X" title="X" ></td>
+						  
+					
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_3" value="0">
+
+
+	
+	
+
+
+<INPUT type="hidden" id="record0_4" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_4" value="13:00">
+	<INPUT type="hidden" id="syuryotime0_4" value="17:00">
+
+	
+					
+					  
+	
+						  
+						  <td id="td11_2" STYLE="display:"""><img src="/shibuya-web/jsp/images_jp/common/icon_timetable_X.gif" alt="X" title="X" ></td>
+						  
+					
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_5" value="0">
+
+
+	
+	
+
+
+<INPUT type="hidden" id="record0_6" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_6" value="18:00">
+	<INPUT type="hidden" id="syuryotime0_6" value="22:00">
+
+	
+					
+					  
+	
+						  
+						  <td id="td11_3" STYLE="display:"""><img src="/shibuya-web/jsp/images_jp/common/icon_timetable_X.gif" alt="X" title="X" ></td>
+						  
+					
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_7" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_7" value="">
+	<INPUT type="hidden" id="syuryotime0_7" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_8" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_8" value="">
+	<INPUT type="hidden" id="syuryotime0_8" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_9" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_9" value="">
+	<INPUT type="hidden" id="syuryotime0_9" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_10" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_10" value="">
+	<INPUT type="hidden" id="syuryotime0_10" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_11" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_11" value="">
+	<INPUT type="hidden" id="syuryotime0_11" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_12" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_12" value="">
+	<INPUT type="hidden" id="syuryotime0_12" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_13" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_13" value="">
+	<INPUT type="hidden" id="syuryotime0_13" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_14" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_14" value="">
+	<INPUT type="hidden" id="syuryotime0_14" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_15" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_15" value="">
+	<INPUT type="hidden" id="syuryotime0_15" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_16" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_16" value="">
+	<INPUT type="hidden" id="syuryotime0_16" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_17" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_17" value="">
+	<INPUT type="hidden" id="syuryotime0_17" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_18" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_18" value="">
+	<INPUT type="hidden" id="syuryotime0_18" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_19" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_19" value="">
+	<INPUT type="hidden" id="syuryotime0_19" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_20" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_20" value="">
+	<INPUT type="hidden" id="syuryotime0_20" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_21" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_21" value="">
+	<INPUT type="hidden" id="syuryotime0_21" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_22" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_22" value="">
+	<INPUT type="hidden" id="syuryotime0_22" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_23" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_23" value="">
+	<INPUT type="hidden" id="syuryotime0_23" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_24" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_24" value="">
+	<INPUT type="hidden" id="syuryotime0_24" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_25" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_25" value="">
+	<INPUT type="hidden" id="syuryotime0_25" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_26" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_26" value="">
+	<INPUT type="hidden" id="syuryotime0_26" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_27" value="0">
+
+
+	<INPUT type="hidden" id="kaisitime0_27" value="">
+	<INPUT type="hidden" id="syuryotime0_27" value="">
+
+	
+	
+	
+
+
+<INPUT type="hidden" id="record0_28" value="0">
+
+
+	
+
+				<td id="td11_4" STYLE="display:""">&nbsp;</td>
+
+				<td id="td11_5" STYLE="display:""">&nbsp;</td>
+
+				<td id="td11_6" STYLE="display:""">&nbsp;</td>
+
+				<td id="td11_7" STYLE="display:""">&nbsp;</td>
+
+			</tr>
+		</tbody>
+
+
+</table>
+<ul class="navigation">
+
+
+<li id="nav-left"><a><input type="image" style="cursor:hand" id="leftbutton" onClick="leftbutton()" src="/shibuya-web/jsp/images_jp/common/btn-nav-left.gif" alt="←" title="←" STYLE="display:none"/></a></li>
+<li id="nav-right"><a><input type="image" style="cursor:hand" id="rightbutton" onClick="rightbutton()" src="/shibuya-web/jsp/images_jp/common/btn-nav-right.gif" alt="→" title="→" STYLE="display:none"/></a></li>
+
+</ul>
+</div><!-- wrapper -->
+</div><!-- timetable -->
+</div><!-- inner-contents -->
+<div id="buttons-navigation">
+<ul class="triple">
+
+
+
+
+
+
+
+<li class="first"><a href="javaScript:okbutton1();"><img src="/shibuya-web/jsp/images_jp/common/btn-nav-change.gif" alt="施設別に切替" title="施設別に切替" /></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="second" class="center"><a  href="javaScript:okbuttonTk();"><img src="/shibuya-web/jsp/images_jp/common/btn-nav-reserve.gif" alt="予約する" title="予約する" /></a></li>
+
+
+
+
+
+
+
+<li class="third">&nbsp;</a></li>
+</ul>
+</div><!-- buttons-navigation -->
+
+</div><!-- contents -->
+
+<ul id="footer">
+		
+	
+		<li id="btn-back">		<A href="/shibuya-web/reserve/gin_z_dsp_sel?u_genzai_idx=4&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum&g_kinonaiyo=8" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-back.gif" alt="前へ戻る" title="前へ戻る" ></A>
+</li>
+		
+
+
+	<li id="btn-user">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-top.gif" alt="トップページへ" title="トップページへ" ></A>
+</li>
+
+
+</ul>
+<FORM name="form_nm" action="/shibuya-web/reserve/gin_k_id_input" target="_parent" method="post">
+	<INPUT type="hidden" name="g_sessionid" value="4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">
+   
+   <input type="hidden" name="flg_sstkoma" value="0">
+
+   <SELECT multiple size="1" name="kanricd" style="visibility: hidden;height:0px">
+    
+      <OPTION value="1">1</OPTION>
+    
+    </SELECT>
+
+    <SELECT multiple size="1" name="cssisetucd" style="visibility: hidden;height:0px">
+    
+
+      <OPTION value="1000104">1000104</OPTION>
+    
+    </SELECT>
+
+    <SELECT multiple size="1" name="g_sisetucd" style="visibility: hidden;height:0px">
+    
+      <OPTION value="1000104">1000104</OPTION>
+    
+    </SELECT>
+
+
+
+    
+	
+
+
+	
+
+
+
+
+      	
+
+		
+
+ 
+ 
+    
+
+
+<SELECT multiple size="1" name="g_stgroup" style="visibility: hidden;height:0px">
+    
+
+      	<OPTION value="1"></OPTION>
+    
+    </SELECT> 
+
+    <SELECT multiple size="1" name="basyocd" style="visibility: hidden;height:0px">
+    
+      <OPTION value="1">1</OPTION>
+    
+    </SELECT>
+
+    
+
+
+
+
+      	
+
+		
+
+   
+ 
+     
+
+    <SELECT multiple size="1" name="ymd" style="visibility: hidden;height:0px">
+    
+      <OPTION value="20140706">20140706</OPTION>
+    
+    </SELECT>  
+
+    <SELECT multiple size="1" name="g_kaisitime" style="visibility: hidden;height:0px">
+    
+      <OPTION value="">0</OPTION>
+    
+    </SELECT>
+
+    <SELECT multiple size="1" name="g_syurtime" style="visibility: hidden;height:0px">
+    
+      <OPTION value="">0</OPTION>
+    
+    </SELECT>
+
+    <SELECT multiple size="1" name="kaisikoma" style="visibility: hidden;height:0px">
+    
+      <OPTION value="0">0</OPTION>
+    
+    </SELECT>
+
+    <SELECT multiple size="1" name="syurkoma" style="visibility: hidden;height:0px">
+    
+      <OPTION value="0">0</OPTION>
+    
+    </SELECT>
+
+    <SELECT multiple size="1" name="g_renzkkoma" style="visibility: hidden;height:0px">
+    
+	
+      <OPTION value="1">1</OPTION>
+    
+    </SELECT>
+<INPUT type="hidden" name="u_genzai_idx" value="6">
+<INPUT type="hidden" name="g_kinonaiyo" value="8">
+
+
+        <input type="hidden" value = ""  name="showStartKoma" />
+        <input type="hidden" value = ""  name="showEndKoma" />
+
+</FORM>
+
+<FORM name="chgDspDateFrm" action="" target="_parent" method="post">
+	<INPUT type="hidden" name="g_sessionid" value="4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">
+<INPUT type="hidden" name="u_genzai_idx" value="" >
+
+
+<INPUT type="hidden" name="hiduke_sousa_flg" value="" >
+
+<INPUT type="hidden" name="u_hyojibi" value="" >
+
+
+<INPUT type="hidden" name="yoyakuinfo" value="">
+
+
+        <input type="hidden" value = ""  name="showStartKoma" />
+        <input type="hidden" value = ""  name="showEndKoma" />
+	
+</FORM>
+
+
+
+<p id="copyright">&nbsp;</p>
+
+</div><!-- wrapper -->
+</body>
+</html>
+

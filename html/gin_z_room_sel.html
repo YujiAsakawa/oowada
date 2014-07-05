@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="content-script-type" content="text/javascript">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>部屋選択</title>
+<link rel="stylesheet" href="/shibuya-web/jsp/stylesheets_jp/simple.css" type="text/css">
+<SCRIPT type="text/javascript">
+<!--
+	
+	
+	var selNum = 0;
+	function buttonClick(value1) {
+
+		if (selNum >0) {
+			return ;
+		}
+		selNum = 1;
+	
+
+		var heyaList = document.form_nm.g_kinomkkbn;
+		
+		var heyaList1 = document.form_nm.g_basyocd;
+		
+		var heyaList2 = document.form_nm.g_stgroup;
+		
+		var heyaList3 = document.form_nm.g_sisetucd;
+
+
+		heyaList.options[value1].selected = true;
+		heyaList1.options[value1].selected = true;
+		heyaList2.options[value1].selected = true;
+		heyaList3.options[value1].selected = true;
+
+
+		document.form_nm.submit();
+	}
+	
+//-->
+</SCRIPT>
+</head>
+<body>
+<div id="wrapper">
+
+<div id="header">
+<h1>部屋選択</h1>
+&nbsp
+<p class="right">
+
+
+		<strong>ようこそゲストさん</strong>
+
+</p>
+</div><!-- header -->
+
+<p id="path">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">システムトップページ</A>
+ &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_group_sel_1?u_genzai_idx=0&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>分類選択１（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_dest_sel?u_genzai_idx=1&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>目的選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp07"><A href=/shibuya-web/reserve/gin_z_amenity_sel?u_genzai_idx=2&amp;g_kinonaiyo=8&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum>施設選択（予約）</A></FONT> &gt;&gt; <FONT class="fopp06"><B>部屋選択（予約）</B></FONT></p>
+
+<FORM name="form_nm" action = "/shibuya-web/reserve/gin_z_dsp_sel" method="post">
+	<INPUT type="hidden" name="g_sessionid" value="4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">
+	<INPUT type="hidden" name="u_genzai_idx" value="4">
+	<INPUT type="hidden" name="g_kinonaiyo" value="8">
+
+<div id="contents">
+<div id="inner-contents">
+
+<p class="lead">利用される部屋を選択してください。</p>
+
+<ul class="double-text-buttons2">
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+<dd><a href="#" id="button0" class ="" onClick="return buttonClick('0');" alt="null" title="文化総合センター大和田学習室１（定員７０名）">
+
+
+
+
+
+
+
+
+
+		
+
+
+	
+			文化総合センター大和田<br />学習室１（定員７０名）
+
+
+
+
+</a></dd>
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+<dd><a href="#" id="button1" class ="" onClick="return buttonClick('1');" alt="null" title="文化総合センター大和田学習室２（定員３０名）">
+
+
+
+
+
+
+
+
+
+		
+
+
+	
+			文化総合センター大和田<br />学習室２（定員３０名）
+
+
+
+
+</a></dd>
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+<dd><a href="#" id="button2" class ="" onClick="return buttonClick('2');" alt="null" title="文化総合センター大和田学習室４（定員１２名）">
+
+
+
+
+
+
+
+
+
+		
+
+
+	
+			文化総合センター大和田<br />学習室４（定員１２名）
+
+
+
+
+</a></dd>
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+<dd><a href="#" id="button3" class ="" onClick="return buttonClick('3');" alt="null" title="文化総合センター大和田学習室６（定員２４名）">
+
+
+
+
+
+
+
+
+
+		
+
+
+	
+			文化総合センター大和田<br />学習室６（定員２４名）
+
+
+
+
+</a></dd>
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+<dd><a href="#" id="button4" class ="" onClick="return buttonClick('4');" alt="null" title="文化総合センター大和田学習室７（定員１８名）">
+
+
+
+
+
+
+
+
+
+		
+
+
+	
+			文化総合センター大和田<br />学習室７（定員１８名）
+
+
+
+
+</a></dd>
+
+
+
+</div>
+
+</ul>
+	<SELECT multiple size="5" name="g_kinomkkbn" style="visibility:hidden;height:0px">
+	
+		<OPTION value="2">文化総合センター大和田学習室１（定員７０名）</OPTION>
+	
+		<OPTION value="2">文化総合センター大和田学習室２（定員３０名）</OPTION>
+	
+		<OPTION value="2">文化総合センター大和田学習室４（定員１２名）</OPTION>
+	
+		<OPTION value="2">文化総合センター大和田学習室６（定員２４名）</OPTION>
+	
+		<OPTION value="2">文化総合センター大和田学習室７（定員１８名）</OPTION>
+	
+	</SELECT>
+	<SELECT multiple size="5" name="g_basyocd" style="visibility:hidden;height:0px">
+	
+		<OPTION value="1">文化総合センター大和田学習室１（定員７０名）</OPTION>
+	
+		<OPTION value="1">文化総合センター大和田学習室２（定員３０名）</OPTION>
+	
+		<OPTION value="1">文化総合センター大和田学習室４（定員１２名）</OPTION>
+	
+		<OPTION value="1">文化総合センター大和田学習室６（定員２４名）</OPTION>
+	
+		<OPTION value="1">文化総合センター大和田学習室７（定員１８名）</OPTION>
+	
+	</SELECT>
+	<SELECT multiple size="5" name="g_stgroup" style="visibility:hidden;height:0px">
+	
+		<OPTION value="1">文化総合センター大和田学習室１（定員７０名）</OPTION>
+	
+		<OPTION value="1">文化総合センター大和田学習室２（定員３０名）</OPTION>
+	
+		<OPTION value="1">文化総合センター大和田学習室４（定員１２名）</OPTION>
+	
+		<OPTION value="1">文化総合センター大和田学習室６（定員２４名）</OPTION>
+	
+		<OPTION value="1">文化総合センター大和田学習室７（定員１８名）</OPTION>
+	
+	</SELECT>
+	<SELECT multiple size="5" name="g_sisetucd" style="visibility:hidden;height:0px">
+	
+		<OPTION value="1000101">文化総合センター大和田学習室１（定員７０名）</OPTION>
+	
+		<OPTION value="1000102">文化総合センター大和田学習室２（定員３０名）</OPTION>
+	
+		<OPTION value="1000104">文化総合センター大和田学習室４（定員１２名）</OPTION>
+	
+		<OPTION value="1000106">文化総合センター大和田学習室６（定員２４名）</OPTION>
+	
+		<OPTION value="1000107">文化総合センター大和田学習室７（定員１８名）</OPTION>
+	
+	</SELECT>
+</div><!-- inner-contents -->
+
+</div><!-- contents -->
+
+<ul id="footer">
+		
+	
+		<li id="btn-back">		<A href="/shibuya-web/reserve/gin_z_amenity_sel?u_genzai_idx=2&g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum&g_kinonaiyo=8" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-back.gif" alt="前へ戻る" title="前へ戻る" ></A>
+</li>
+		
+	
+
+		<li id="btn-user">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-top.gif" alt="トップページへ" title="トップページへ" ></A>
+</li>
+
+	
+</ul>
+</FORM>
+
+<p id="copyright">&nbsp;</p>
+
+</div><!-- wrapper -->
+
+</body>
+</html>
+
