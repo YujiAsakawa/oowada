@@ -66,8 +66,8 @@ page = form.click_button(btn)
 
 puts 'select type'
 form = page.form_with(name: 'selectBunriForm')
-form.field_with(name: 'g_bunruicd').options[1].select
-form.field_with(name: 'bunruicd').options[1].select
+form.field_with(name: 'g_bunruicd').options[8].select
+form.field_with(name: 'bunruicd').options[8].select
 page = form.submit
 
 puts 'select use'
