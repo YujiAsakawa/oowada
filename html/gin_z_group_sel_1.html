@@ -14,69 +14,69 @@
 
     function buttonClick(num,value,urlFlg) {
 
-	    var bunriList = document.selectBunriForm.g_bunruicd;
-		var bunriList1 = document.selectBunriForm.bunruicd;
-	    for(i=0; i<bunriList.length; i++)
-	    {
-	        if(bunriList.options[i].value == value) {
-		            if(bunriList.options[i].selected) {
-	           		bunriList.options[i].selected = false;
-	            } else {
-	                bunriList.options[i].selected = true;
-	            }
-	            break;
-	        }	
-	     }
-		for(i=0; i<bunriList1.length; i++)
-	    {
-	        if(bunriList1.options[i].value == value) {
-	
-	            if(bunriList1.options[i].selected) {
-	           		bunriList1.options[i].selected = false;
-	            } else {
-	                bunriList1.options[i].selected = true;
-	            }
-	            break;
-	        }	
-	     }
-	    if(urlFlg != "1")
-	    {
-	        //分類選択子画面に遷移する。
-	        document.selectBunriForm.action ="/shibuya-web/reserve/gin_z_group_sel_2";
-	        document.selectBunriForm.target = "_self";
-	    }
+      var bunriList = document.selectBunriForm.g_bunruicd;
+    var bunriList1 = document.selectBunriForm.bunruicd;
+      for(i=0; i<bunriList.length; i++)
+      {
+          if(bunriList.options[i].value == value) {
+                if(bunriList.options[i].selected) {
+                bunriList.options[i].selected = false;
+              } else {
+                  bunriList.options[i].selected = true;
+              }
+              break;
+          } 
+       }
+    for(i=0; i<bunriList1.length; i++)
+      {
+          if(bunriList1.options[i].value == value) {
+  
+              if(bunriList1.options[i].selected) {
+                bunriList1.options[i].selected = false;
+              } else {
+                  bunriList1.options[i].selected = true;
+              }
+              break;
+          } 
+       }
+      if(urlFlg != "1")
+      {
+          //分類選択子画面に遷移する。
+          document.selectBunriForm.action ="/shibuya-web/reserve/gin_z_group_sel_2";
+          document.selectBunriForm.target = "_self";
+      }
 
-	    document.selectBunriForm.submit();
-	    
-	    
-	    for(i=0; i<bunriList.length; i++)
-	    {
-	        if(bunriList.options[i].value == value) {
-		        if(bunriList.options[i].selected) {
-	           		bunriList.options[i].selected = false;
-	            } else {
-	                bunriList.options[i].selected = false;
-	            }
-	            break;
-	        }	
-	     }
-		for(i=0; i<bunriList1.length; i++)
-	    {
-	        if(bunriList1.options[i].value == value) {
-	
-	            if(bunriList1.options[i].selected) {
-	           		bunriList1.options[i].selected = false;
-	            } else {
-	                bunriList1.options[i].selected = false;
-	            }
-	            break;
-	        }	
-	     }
-	     
+      document.selectBunriForm.submit();
+      
+      
+      for(i=0; i<bunriList.length; i++)
+      {
+          if(bunriList.options[i].value == value) {
+            if(bunriList.options[i].selected) {
+                bunriList.options[i].selected = false;
+              } else {
+                  bunriList.options[i].selected = false;
+              }
+              break;
+          } 
+       }
+    for(i=0; i<bunriList1.length; i++)
+      {
+          if(bunriList1.options[i].value == value) {
+  
+              if(bunriList1.options[i].selected) {
+                bunriList1.options[i].selected = false;
+              } else {
+                  bunriList1.options[i].selected = false;
+              }
+              break;
+          } 
+       }
+       
 
-	}
+  }
 
-	-->
+  -->
 </script>
 </head>
 <body>
@@ -86,12 +86,12 @@
 &nbsp
 <p class="right">
 
-		<strong>ようこそゲストさん</strong>
+    <strong>ようこそゲストさん</strong>
 
 </p>
 </div><!-- header -->
 
-<p id="path">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">システムトップページ</A>
+<p id="path">   <a href="/shibuya-web/reserve/gin_init?g_sessionid=N3h97hnci5FRZpq4ood3XjaNS329n21T">システムトップページ</A>
  &gt;&gt; <FONT class="fopp06"><B>分類選択１（予約）</B></FONT></p>
 
 <div id="contents">
@@ -101,7 +101,7 @@
 
 <div>
 
-	
+  
 
 
 <li><a id="button0" class ="" href="javascript:buttonClick('0','1000','1')" title="文化総合センタ大和田">文化総合センタ大和田</a></li>
@@ -109,66 +109,72 @@
 
 <div>
 
-	
 
-
-<li><a id="button1" class ="" href="javascript:buttonClick('1','5051','1')" title="スポーツセンター">スポーツセンター</a></li>
-
-
-<div>
-
-	
-
-
-<li><a id="button2" class ="" href="javascript:buttonClick('2','5052','1')" title="代々木西原公園庭球場">代々木西原公園庭球場</a></li>
+<li><a id="button1" class ="" href="javascript:buttonClick('1','3000','2')" title="社会教育施設">社会教育施設</a></li>
 
 
 <div>
 
-	
+  
 
 
-<li><a id="button3" class ="" href="javascript:buttonClick('3','5053','1')" title="代々木大山公園運動場">代々木大山公園運動場</a></li>
-
-
-<div>
-
-	
-
-
-<li><a id="button4" class ="" href="javascript:buttonClick('4','5054','1')" title="二子玉川区民運動施設">二子玉川区民運動施設</a></li>
+<li><a id="button2" class ="" href="javascript:buttonClick('2','5051','1')" title="スポーツセンター">スポーツセンター</a></li>
 
 
 <div>
 
-	
+  
 
 
-<li><a id="button5" class ="" href="javascript:buttonClick('5','5055','1')" title="代官山スポーツプラザ">代官山スポーツプラザ</a></li>
-
-
-<div>
-
-	
-
-
-<li><a id="button6" class ="" href="javascript:buttonClick('6','5056','1')" title="ひがし健康プラザ">ひがし健康プラザ</a></li>
+<li><a id="button3" class ="" href="javascript:buttonClick('3','5052','1')" title="代々木西原公園庭球場">代々木西原公園庭球場</a></li>
 
 
 <div>
 
-	
+  
 
 
-<li><a id="button7" class ="" href="javascript:buttonClick('7','5057','1')" title="みやしたこうえん">みやしたこうえん</a></li>
+<li><a id="button4" class ="" href="javascript:buttonClick('4','5053','1')" title="代々木大山公園運動場">代々木大山公園運動場</a></li>
 
 
 <div>
 
-	
+  
 
 
-<li><a id="button8" class ="" href="javascript:buttonClick('8','9000','1')" title="利用目的から">利用目的から</a></li>
+<li><a id="button5" class ="" href="javascript:buttonClick('5','5054','1')" title="二子玉川区民運動施設">二子玉川区民運動施設</a></li>
+
+
+<div>
+
+  
+
+
+<li><a id="button6" class ="" href="javascript:buttonClick('6','5055','1')" title="代官山スポーツプラザ">代官山スポーツプラザ</a></li>
+
+
+<div>
+
+  
+
+
+<li><a id="button7" class ="" href="javascript:buttonClick('7','5056','1')" title="ひがし健康プラザ">ひがし健康プラザ</a></li>
+
+
+<div>
+
+  
+
+
+<li><a id="button8" class ="" href="javascript:buttonClick('8','5057','1')" title="みやしたこうえん">みやしたこうえん</a></li>
+
+
+<div>
+
+  
+
+
+<li><a id="button9" class ="" href="javascript:buttonClick('9','9000','1')" title="利用目的から">利用目的から</a></li>
 
 
 </div>
@@ -177,34 +183,36 @@
 </div><!-- contents -->
 <ul id="footer">
 
-	
-	
-	
-	
-	
-		
-	
-		<li id="btn-back"><a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum"><img src="/shibuya-web/jsp/images_jp/common/btn-back.gif" title="前へ戻る"/></a></li>
-		
-	
+  
+  
+  
+  
+  
+    
+  
+    <li id="btn-back"><a href="/shibuya-web/reserve/gin_init?g_sessionid=N3h97hnci5FRZpq4ood3XjaNS329n21T"><img src="/shibuya-web/jsp/images_jp/common/btn-back.gif" title="前へ戻る"/></a></li>
+    
+  
 
     
 
-	<li id="btn-user">		<a href="/shibuya-web/reserve/gin_init?g_sessionid=4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-top.gif" alt="トップページへ" title="トップページへ" ></A>
+  <li id="btn-user">    <a href="/shibuya-web/reserve/gin_init?g_sessionid=N3h97hnci5FRZpq4ood3XjaNS329n21T" target="_self"><IMG src="/shibuya-web/jsp/images_jp/common/btn-top.gif" alt="トップページへ" title="トップページへ" ></A>
 </li>
-		
+    
 
 </ul>
 
 <p id="copyright">&nbsp;</p>
-		
+    
 </div><!-- wrapper -->
 <FORM name="selectBunriForm" action="/shibuya-web/reserve/gin_z_dest_sel" target="_parent" method="post">
-	<INPUT type="hidden" name="g_sessionid" value="4KewVpNLcV6nr1CP3LZ6W69k2o9i1bum">
+  <INPUT type="hidden" name="g_sessionid" value="N3h97hnci5FRZpq4ood3XjaNS329n21T">
     <INPUT type="hidden" name="checkedAll" value="false" >
-    <SELECT multiple size="9" name="g_bunruicd" style="visibility:hidden;height:0px">
+    <SELECT multiple size="10" name="g_bunruicd" style="visibility:hidden;height:0px">
     
       <OPTION value="1000">1</OPTION>
+    
+      <OPTION value="3000">0</OPTION>
     
       <OPTION value="5051">1</OPTION>
     
@@ -224,9 +232,11 @@
     
 
     </SELECT>
-    <SELECT multiple size="9" name="bunruicd" style="visibility:hidden;height:0px">
+    <SELECT multiple size="10" name="bunruicd" style="visibility:hidden;height:0px">
     
       <OPTION value="1000">1</OPTION>
+    
+      <OPTION value="3000">0</OPTION>
     
       <OPTION value="5051">1</OPTION>
     
@@ -251,3 +261,4 @@
 </FORM>
 </body>
 </html>
+
