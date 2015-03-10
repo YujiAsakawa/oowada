@@ -15,7 +15,7 @@ ALL = OPT[:all]
 
 
 END_OF_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-ROOMS = {'学習室6' => 3, '学習室4' => 2, '学習室7' => 4, '学習室2' => 1}#, '学習室6' => 3, '学習室1' => 0}
+ROOMS = {'学習室4' => 2, '学習室2' => 1, '学習室7' => 4, '学習室6' => 3, '学習室1' => 0}
 
 def remaining_days(date, tomorrow)
 	end_month = end_month(tomorrow)
