@@ -46,7 +46,8 @@ end
 puts now = DateTime.now
 tomorrow = now.to_date + 1 
 
-file = File.open(now.strftime("#{DATE}_%Y%m%d_%H%M.txt"), 'w')
+prefix = DATE && "#{DATE}_"
+file = File.open(now.strftime("#{prefix}%Y%m%d_%H%M.txt"), 'w')
 file.puts now
 
 agent = Mechanize.new
