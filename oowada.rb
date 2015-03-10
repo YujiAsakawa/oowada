@@ -6,8 +6,8 @@ require 'optparse'
 
 OPT = {}
 opt = OptionParser.new
-opt.on('-d VAL') { |v| OPT[:date] = v }
-opt.on('-a') { |v| OPT[:all] = v }
+opt.on('-d date', '指定した日付以降を調べる') { |v| OPT[:date] = v }
+opt.on('-a', '夜間が空いて無い分も表示する') { |v| OPT[:all] = v }
 opt.parse!(ARGV)
 
 DATE = OPT[:date] ? Date.parse(OPT[:date]) : nil
