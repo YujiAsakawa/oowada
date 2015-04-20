@@ -7,18 +7,20 @@ require 'optparse'
 OPT = {}
 opt = OptionParser.new
 opt.on('-d date', '指定した日付以降を調べる') { |v| OPT[:date] = v }
+opt.on('-m month', '指定した月だけ調べる') { |v| OPT[:month] = v }
 opt.on('-a', '夜間が空いて無い分も表示する') { |v| OPT[:all] = v }
 opt.parse!(ARGV)
 
-DATE = OPT[:date] ? Date.parse(OPT[:date]) : nil
-ALL = OPT[:all]
-
-
-END_OF_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-ROOMS = {'学習室4' => 2, '学習室2' => 1, '学習室7' => 4, '学習室6' => 3, '学習室1' => 0}
+def target_month(month)
+	month = month.to_i
+	date = Date.today
+	year = date.year
+	year += 1 if date.month > month
+	Date.new(year, month, 1)
+end
 
 def remaining_days(date, tomorrow)
-	end_month = end_month(tomorrow)
+	end_month = MONTH || end_month(tomorrow)
 	end_of_month = end_of_month(end_month)
 	end_day = Date.new(end_month.year, end_month.month, end_of_month)
 	
@@ -42,6 +44,13 @@ def formatter(html)
 		"#{day}#{states.join(':')}" if ALL || states.last == 'O'
 	end.compact
 end
+
+DATE = OPT[:date] ? Date.parse(OPT[:date]) : nil
+MONTH = OPT[:month] && target_month(OPT[:month])
+ALL = OPT[:all]
+
+END_OF_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+ROOMS = {'学習室4' => 2, '学習室2' => 1, '学習室7' => 4, '学習室6' => 3, '学習室1' => 0}
 
 puts now = DateTime.now
 tomorrow = now.to_date + 1 
@@ -86,7 +95,7 @@ page = page.form_with(name: 'basyoForm') do |form|
 end.submit
 
 ROOMS.each do |name, room|
-	date = DATE || tomorrow
+	date = MONTH || DATE || tomorrow
 	file.puts "■ #{name}"
 	puts "■ #{name}"
 
